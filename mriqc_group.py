@@ -27,7 +27,7 @@ def main(bidsdir, outputdir='', force=False, mem_gb=1, argstr='', qargstr=''):
         return
 
     # Run mriqc
-    command = """qsub -l walltime=0:10:00,mem={mem_gb}gb -N mriqc_group {qargs} <<EOF
+    command = """qsub -l h_rt=0:10:00,mem={mem_gb}gb -N mriqc_group {qargs} <<EOF
                  module add mriqc; cd {pwd}
                  {mriqc} {bidsdir} {outputdir} group --nprocs 1 {args}\nEOF"""\
                  .format(pwd       = os.getcwd(),
